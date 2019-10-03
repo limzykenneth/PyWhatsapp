@@ -6,8 +6,7 @@
 ## Objective:
 Pywhatsapp is used to Automate Whatsapp through Whatsapp web. We can
 add number of contacts whom we want to send messages or Media
-attachments ( like Video or Images). Selenium, Autoit and Schedule have
-been used one from Automation and other for Scheduling messages.
+attachments ( like Video or Images). Selenium, Autoit, AppleScript and Schedule is used for automation and scheduling messages.
 
 ---
 
@@ -21,6 +20,8 @@ messages and sleep peacefully.
 
 ## Installation
 
+Uncomment the relevant module in `requirements.txt` for your platform
+
 >$ pip install -r requirements.txt
 
 OR
@@ -29,47 +30,49 @@ OR
 >
 >$ pip install schedule
 >
+
+For Windows:
 >$ pip install PyAutoIt
 
----
-
-### Platform: Windows
-ChromeDriver used: If this versions becomes outdated or gives problem
-download the latest version from <a href =
-"http://chromedriver.chromium.org/downloads"> Download Link </a>
-
-### Platform Mac
-Remove the ChromeDriverused in the repository and install <a href =
-"https://chromedriver.storage.googleapis.com/2.42/chromedriver_mac64.zip">Mac ChromeDrive Download Link</a>
-
->Set ChromeDriver path in function whatsapp_login()
-><a href ="https://stackoverflow.com/a/44870398/6897603">Set
->  ChromeDriver Path in MacOS</a>
+For macOS:
+>$ pip install applescript
 
 ---
-### For Sending Attachments you need to Install AutoIt (Optional if you only what to send messages) | (Only FOR WINDOWS USERS):
+
+### ChromeDriver
+Download and install the latest version from [Download Link](http://chromedriver.chromium.org/downloads), make sure ChromeDriver is available in your PATH.
+
+[Set ChromeDriver Path in MacOS](https://stackoverflow.com/a/44870398/6897603)
+
+Or you can install with your OS's package manager.
+
+---
+### For Sending Attachments
+
+#### For Windows
+You need to Install AutoIt:
 
 You may install from the links given below or Install from the folder
 named "Install AutoIt for Sending Attachments" in the repository.
 
-<a href = "https://www.autoitscript.com/site/autoit/downloads/">Official
-Website Download Webpage</a>
+[Official Website Download Webpage](https://www.autoitscript.com/site/autoit/downloads/)
 
-<a href =
-"https://www.autoitscript.com/cgi-bin/getfile.pl?autoit3/autoit-v3-setup.exe"> Installation Link of AutoIt.exe</a>
+[Installation Link of AutoIt.exe](https://www.autoitscript.com/cgi-bin/getfile.pl?autoit3/autoit-v3-setup.exe)
 
-<a href =
-"https://www.autoitscript.com/cgi-bin/getfile.pl?../autoit3/scite/download/SciTE4AutoIt3.exe"> AutoitScript Editor (optional to install) </a>
+[AutoitScript Editor (optional to install)](https://www.autoitscript.com/cgi-bin/getfile.pl?../autoit3/scite/download/SciTE4AutoIt3.exe)
 
 Installation is pretty Simple no changes in setting are required keep
 everything default. Few clicks on Next and you are done.
 
+#### For macOS
+Make sure you have installed the relevant module. No additional steps required.
+
 ---
 
-## Feature Enhancement: 
+## Feature Enhancement:
 QR CODE Scanning: On receiving a lot of complaints about QR Code Scanning Issue again and again. I have added a Cookie system that will save your session so that whatsapp don't think you are login for first time. By Saving Session data you will have to scan QR Code to Login only once or till the time whatsapp doesnot log you out from whatsappweb.
 
-NOTE: A folder User_Data will be created which has all your session information. Keep this Folder VERY SAFE. 
+NOTE: A folder User_Data will be created which has all your session information. Keep this Folder VERY SAFE.
 
 ## Code:
 ### input_contacts()

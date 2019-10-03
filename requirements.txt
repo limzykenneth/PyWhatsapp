@@ -4,5 +4,5 @@ selenium==3.13.0
 # For Windows
 # PyAutoIt==0.4
 
-# For Mac
-# applescript==2019.4.13
+# For macOS
+applescript==2019.4.13

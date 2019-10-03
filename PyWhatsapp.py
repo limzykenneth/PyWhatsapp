@@ -6,9 +6,13 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.chrome.options import Options 
+from selenium.webdriver.chrome.options import Options
 try:
     import autoit
+except:
+    pass
+try:
+    import applescript
 except:
     pass
 import time
@@ -87,7 +91,7 @@ def input_message():
 
 def whatsapp_login():
     global wait,browser,Link
-    chrome_options = Options()  
+    chrome_options = Options()
     chrome_options.add_argument('--user-data-dir=./User_Data')
     browser = webdriver.Chrome(options=chrome_options)
     wait = WebDriverWait(browser, 600)
@@ -151,17 +155,31 @@ def send_attachment():
 
     # After 5am and before 11am scheduled this.
     if(hour >=5 and hour <=11):
-        image_path = os.getcwd() +"\\Media\\" + 'goodmorning.jpg'
+        image_path = os.path.join(os.getcwd(), "Media", "goodmorning.jpg")
     # After 9pm and before 11pm schedule this
     elif (hour>=21 and hour<=23):
-        image_path = os.getcwd() +"\\Media\\" + 'goodnight.jpg'
+        image_path = os.path.join(os.getcwd(), "Media", "goodnight.jpg")
     else: # At any other time schedule this.
-        image_path = os.getcwd() +"\\Media\\" + 'howareyou.jpg'
-    # print(image_path)
+        image_path = os.path.join(os.getcwd(), "Media", "howareyou.jpg")
 
-    autoit.control_focus("Open","Edit1")
-    autoit.control_set_text("Open","Edit1",(image_path) )
-    autoit.control_click("Open","Button1")
+    if "autoit" in sys.modules:
+        autoit.control_focus("Open","Edit1")
+        autoit.control_set_text("Open","Edit1",(image_path) )
+        autoit.control_click("Open","Button1")
+    elif "applescript" in sys.modules:
+        applescript.tell.app("System Events", 'keystroke "G" using {command down, shift down}')
+        applescript.tell.app("System Events", "delay 1")
+        applescript.tell.app("System Events", 'keystroke "' + image_path + '"')
+        applescript.tell.app("System Events", "delay 1")
+        applescript.tell.app("System Events", "keystroke return")
+
+        applescript.tell.app("System Events", "delay 1")
+        applescript.tell.app("System Events", "keystroke return")
+
+        applescript.tell.app("System Events", "delay 1")
+    else:
+        print("Sending attachments is not supported on your system")
+        return
 
     time.sleep(3)
     whatsapp_send_button = browser.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/span[2]/div/div/span')
@@ -180,11 +198,26 @@ def send_files():
     docButton.click()
     time.sleep(1)
 
-    docPath = os.getcwd() + "\\Documents\\" + doc_filename
+    docPath = os.path.join(os.getcwd(), "Documents", doc_filename)
 
-    autoit.control_focus("Open","Edit1")
-    autoit.control_set_text("Open","Edit1",(docPath) )
-    autoit.control_click("Open","Button1")
+    if "autoit" in sys.modules:
+        autoit.control_focus("Open","Edit1")
+        autoit.control_set_text("Open","Edit1",(docPath) )
+        autoit.control_click("Open","Button1")
+    elif "applescript" in sys.modules:
+        applescript.tell.app("System Events", 'keystroke "G" using {command down, shift down}')
+        applescript.tell.app("System Events", "delay 1")
+        applescript.tell.app("System Events", 'keystroke "' + docPath + '"')
+        applescript.tell.app("System Events", "delay 1")
+        applescript.tell.app("System Events", "keystroke return")
+
+        applescript.tell.app("System Events", "delay 1")
+        applescript.tell.app("System Events", "keystroke return")
+
+        applescript.tell.app("System Events", "delay 1")
+    else:
+        print("Sending file is not supported on your system")
+        return
 
     time.sleep(3)
     whatsapp_send_button = browser.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/span[2]/div/div/span')
